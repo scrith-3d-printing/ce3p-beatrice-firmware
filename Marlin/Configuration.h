@@ -1170,7 +1170,7 @@
  * Override with M92
  *                                      X, Y, Z [, I [, J [, K...]]], E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 96.73 }
 
 /**
  * Default Max Feed Rate (linear=mm/s, rotational=°/s)
@@ -1696,8 +1696,8 @@
 // @section geometry
 
 // The size of the printable area
-#define X_BED_SIZE 220
-#define Y_BED_SIZE 220
+#define X_BED_SIZE 230
+#define Y_BED_SIZE 230
 // 235x235 is simply wrong, the printer cannot reach those dimensions, the bed isn't even physically that large.
 
 // Travel limits (linear=mm, rotational=°) after homing, corresponding to endstop positions.
