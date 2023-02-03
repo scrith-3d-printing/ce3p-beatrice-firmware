@@ -1411,6 +1411,7 @@
  * CAUTION: This can damage machines with Z lead screws.
  *          Take extreme care when setting up this feature.
  */
+#define DIAG_JUMPERS_REMOVED
 //#define SENSORLESS_PROBING
 
 /**
