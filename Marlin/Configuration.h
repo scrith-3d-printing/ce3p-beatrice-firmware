@@ -1411,7 +1411,6 @@
  * CAUTION: This can damage machines with Z lead screws.
  *          Take extreme care when setting up this feature.
  */
-#define DIAG_JUMPERS_REMOVED
 //#define SENSORLESS_PROBING
 #define DIAG_JUMPERS_REMOVED // Motherboard DIAG jumpers must be removed when SENSORLESS_HOMING is disabled. (Define DIAG_JUMPERS_REMOVED to suppress this warning.)
 
