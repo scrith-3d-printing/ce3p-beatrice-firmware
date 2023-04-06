@@ -1484,7 +1484,7 @@
 #endif // HAS_DISPLAY || DWIN_LCD_PROUI
 
 // Add 'M73' to set print job progress, overrides Marlin's built-in estimate
-#define SET_PROGRESS_MANUALLY
+//#define SET_PROGRESS_MANUALLY
 #if ENABLED(SET_PROGRESS_MANUALLY)
   #define SET_PROGRESS_PERCENT            // Add 'P' parameter to set percentage done
   #define SET_REMAINING_TIME              // Add 'R' parameter to set remaining time
@@ -3748,29 +3748,30 @@
   #define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
   #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
 
-  #define MAIN_MENU_ITEM_1_DESC "Clean Bed"
-  #define MAIN_MENU_ITEM_1_GCODE "G28 0\nG0 F6000 X" STRINGIFY(X_MIN_POS) " Y" STRINGIFY(Y_MAX_POS) "\nM18 S30"
-  //home untrusted axes then present bed for cleaning, disable steppers after 30 seconds
-  //#define MAIN_MENU_ITEM_1_CONFIRM          // Show a confirmation dialog before this action
+  #define MAIN_MENU_ITEM_1_DESC "Eject Bed"
+  #define MAIN_MENU_ITEM_1_GCODE "G28 0 X Y\nG0 F8000 X" STRINGIFY(X_MIN_POS) " Y" STRINGIFY(Y_MAX_POS) "\nM18 S60"
+  //home only X and Y if untrusted then present bed, disabled steppers after 60 seconds
+  //#define MAIN_MENU_ITEM_1_CONFIRM
 
   #define MAIN_MENU_ITEM_2_DESC "Prepare " PREHEAT_1_LABEL
-  #define MAIN_MENU_ITEM_2_GCODE "M104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND) "\nM190 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nG28\nG29\nM500"
+  #define MAIN_MENU_ITEM_2_GCODE "M190 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
   //preheat hotend without wait, preheat bed with wait, then home and perform bed levelling, and save results
   #define MAIN_MENU_ITEM_2_CONFIRM
 
   #define MAIN_MENU_ITEM_3_DESC "Prepare " PREHEAT_2_LABEL
-  #define MAIN_MENU_ITEM_3_GCODE "M104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND) "\nM190 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29\nM500"
+  #define MAIN_MENU_ITEM_3_GCODE "M190 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
   //preheat hotend without wait, preheat bed with wait, then home and perform bed levelling, and save results
   #define MAIN_MENU_ITEM_3_CONFIRM
 
-  #define MAIN_MENU_ITEM_4_DESC "Present Print"
-  #define MAIN_MENU_ITEM_4_GCODE "G28 X Y\nG0 F6000 X" STRINGIFY(X_MIN_POS) " Y" STRINGIFY(Y_MAX_POS) "\nM18 S60"
+  //#define MAIN_MENU_ITEM_4_DESC "Present Build Plate"
+  //#define MAIN_MENU_ITEM_4_GCODE "G28 0 X Y\nG0 F8000 X" STRINGIFY(X_MIN_POS) " Y" STRINGIFY(Y_MAX_POS) "\nM18 S60"
   //home only X and Y then present bed, disabled steppers after 60 seconds
   //#define MAIN_MENU_ITEM_4_CONFIRM
 
   //#define MAIN_MENU_ITEM_5_DESC "Home & Info"
   //#define MAIN_MENU_ITEM_5_GCODE "G28\nM503"
   //#define MAIN_MENU_ITEM_5_CONFIRM
+
 #endif
 
 // @section custom config menu
