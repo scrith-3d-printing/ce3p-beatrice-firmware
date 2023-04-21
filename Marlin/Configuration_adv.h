@@ -3754,18 +3754,18 @@
   //#define MAIN_MENU_ITEM_1_CONFIRM
 
   #define MAIN_MENU_ITEM_2_DESC "Prepare " PREHEAT_1_LABEL
-  #define MAIN_MENU_ITEM_2_GCODE "M190 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND)
+  #define MAIN_MENU_ITEM_2_GCODE "M190 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND) "\nM300 S220 P50"
   //preheat hotend without wait, preheat bed with wait, then home and perform bed levelling, and save results
   #define MAIN_MENU_ITEM_2_CONFIRM
 
   #define MAIN_MENU_ITEM_3_DESC "Prepare " PREHEAT_2_LABEL
-  #define MAIN_MENU_ITEM_3_GCODE "M190 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND)
+  #define MAIN_MENU_ITEM_3_GCODE "M190 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND) "\nM300 S220 P50"
   //preheat hotend without wait, preheat bed with wait, then home and perform bed levelling, and save results
   #define MAIN_MENU_ITEM_3_CONFIRM
 
-  //#define MAIN_MENU_ITEM_4_DESC "Present Build Plate"
-  //#define MAIN_MENU_ITEM_4_GCODE "G28 0 X Y\nG0 F8000 X" STRINGIFY(X_MIN_POS) " Y" STRINGIFY(Y_MAX_POS) "\nM18 S60"
-  //home only X and Y then present bed, disabled steppers after 60 seconds
+  //#define MAIN_MENU_ITEM_4_DESC "Prepare " PREHEAT_3_LABEL
+  //#define MAIN_MENU_ITEM_4_GCODE "M190 S" STRINGIFY(PREHEAT_3_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_3_TEMP_HOTEND) "\nM300 S220 P50"
+  //preheat hotend without wait, preheat bed with wait, then home and perform bed levelling, and save results
   //#define MAIN_MENU_ITEM_4_CONFIRM
 
   //#define MAIN_MENU_ITEM_5_DESC "Home & Info"
