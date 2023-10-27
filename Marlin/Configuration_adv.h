@@ -3748,24 +3748,36 @@
   #define CUSTOM_MENU_MAIN_SCRIPT_RETURN   // Return to status screen after a script
   #define CUSTOM_MENU_MAIN_ONLY_IDLE         // Only show custom menu when the machine is idle
 
-  #define MAIN_MENU_ITEM_1_DESC "Eject Bed"
-  #define MAIN_MENU_ITEM_1_GCODE "G28 0 X Y\nG0 F8000 X" STRINGIFY(X_MIN_POS) " Y" STRINGIFY(Y_MAX_POS) "\nM18 S60\nM300 S220 P50"
-  //home only X and Y if untrusted then present bed, disabled steppers after 60 seconds
+  #define MAIN_MENU_ITEM_1_DESC "Present Bed"
+  #define MAIN_MENU_ITEM_1_GCODE "G28 0 X Y\nG0 F8000 X" STRINGIFY(X_MIN_POS) " Y" STRINGIFY(Y_MAX_POS) "\nG4 S30"
+  //home only X and Y if untrusted then present bed, dwell 30 seconds
   //#define MAIN_MENU_ITEM_1_CONFIRM
 
-  #define MAIN_MENU_ITEM_2_DESC "Prepare " PREHEAT_1_LABEL
-  #define MAIN_MENU_ITEM_2_GCODE "M190 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND) "\nM300 S220 P50"
-  //preheat hotend without wait, preheat bed with wait, then home and perform bed levelling, and save results
+  #define MAIN_MENU_ITEM_2_DESC "Service Nozzle"
+  #define MAIN_MENU_ITEM_2_GCODE "G28 \nG0 F3000 X" STRINGIFY(X_SERVICE_POS) " Y" STRINGIFY(Y_SERVICE_POS) " Z120 \nM300 S220 P50 \nM109 S250 \nM300 S220 P50 \nG4 S60 \nM300 S220 P50 \nM104 S0"
+  //home to center, move up 120mm on z, heat nozzle, dwell 60 seconds, cool down
+  //Hotend will idle timeout after 180
   #define MAIN_MENU_ITEM_2_CONFIRM
 
-  #define MAIN_MENU_ITEM_3_DESC "Prepare " PREHEAT_2_LABEL
-  #define MAIN_MENU_ITEM_3_GCODE "M190 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND) "\nM300 S220 P50"
-  //preheat hotend without wait, preheat bed with wait, then home and perform bed levelling, and save results
+  #define MAIN_MENU_ITEM_3_DESC "Cold Pull"
+  #define MAIN_MENU_ITEM_3_GCODE "G28 \nG0 F3000 X" STRINGIFY(X_SERVICE_POS) " Y" STRINGIFY(Y_SERVICE_POS) "Z20 \nM300 S220 P50 \nM109 S100 \nG4 S30 \nM300 S220 P50 \nM104 S0"
+  //home to center, move up 20mm on z, low-heat nozzle, dwell 30 seconds, cool down, 
   #define MAIN_MENU_ITEM_3_CONFIRM
 
-  //#define MAIN_MENU_ITEM_5_DESC "Home & Info"
-  //#define MAIN_MENU_ITEM_5_GCODE "G28\nM503"
-  //#define MAIN_MENU_ITEM_5_CONFIRM
+  #define MAIN_MENU_ITEM_4_DESC "Prepare for " PREHEAT_1_LABEL
+  #define MAIN_MENU_ITEM_4_GCODE "M190 S" STRINGIFY(PREHEAT_1_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_1_TEMP_HOTEND) "\nM400\nG0 F8000 X" STRINGIFY(X_MIN_POS) " Y" STRINGIFY(Y_MAX_POS) "\nM300 S220 P50"
+  //preheat preheat bed with wait, home, build bed mesh, save results, move to back left corner, beep
+  #define MAIN_MENU_ITEM_4_CONFIRM
+
+  #define MAIN_MENU_ITEM_5_DESC "Prepare for " PREHEAT_2_LABEL
+  #define MAIN_MENU_ITEM_5_GCODE "M190 S" STRINGIFY(PREHEAT_2_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_2_TEMP_HOTEND) "\nM400\nG0 F8000 X" STRINGIFY(X_MIN_POS) " Y" STRINGIFY(Y_MAX_POS) "\nM300 S220 P50"
+  //preheat preheat bed with wait, home, build bed mesh, save results, move to back left corner, beep
+  #define MAIN_MENU_ITEM_5_CONFIRM
+
+  //#define MAIN_MENU_ITEM_6_DESC "Prepare for " PREHEAT_3_LABEL
+  //#define MAIN_MENU_ITEM_6_GCODE "M190 S" STRINGIFY(PREHEAT_3_TEMP_BED) "\nG28\nG29\nM500\nM104 S" STRINGIFY(PREHEAT_3_TEMP_HOTEND) "\nM400\nG0 F8000 X" STRINGIFY(X_MIN_POS) " Y" STRINGIFY(Y_MAX_POS) "\nM300 S220 P50"
+  //preheat preheat bed with wait, home, build bed mesh, save results, move to back left corner, beep
+  //#define MAIN_MENU_ITEM_6_CONFIRM
 
 #endif
 
